@@ -1,0 +1,18 @@
+{
+  "name": "central-gen-z-video-enhancer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@ffmpeg/util": "^0.12.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}
