@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050b1a" />
+    <meta name="description" content="Tingkatkan kualitas video langsung di HP. Diproses 100% di perangkat, tanpa upload ke server." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E" />
+    <title>CENTRAL GEN Z VIDEO ENHANCER</title>
+  </head>
+  <body>
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">▶</span>
+          <div>
+            <h1>CENTRAL GEN Z</h1>
+            <p>VIDEO ENHANCER</p>
+          </div>
+        </div>
+        <span class="badge">🔒 Diproses di perangkat</span>
+      </header>
+
+      <main>
+        <p class="intro">
+          Perjelas, kurangi noise, dan atur warna video langsung dari HP. Video Anda
+          <strong>tidak pernah dikirim ke server</strong>.
+        </p>
+
+        <div id="errorBox" class="alert" role="alert" hidden></div>
+
+        <div class="layout">
+          <!-- 1. Upload & preview -->
+          <section class="card">
+            <h2><span class="step">1</span> Video Asli</h2>
+
+            <input id="fileInput" class="sr-only" type="file" accept="video/*" />
+            <label id="dropzone" class="dropzone" for="fileInput">
+              <span class="drop-icon" aria-hidden="true">⬆</span>
+              <strong>Pilih video dari galeri</strong>
+              <small id="limitHint"></small>
+            </label>
+
+            <div id="originalWrap" hidden>
+              <video id="originalVideo" controls playsinline preload="metadata"></video>
+              <p id="fileInfo" class="meta"></p>
+            </div>
+          </section>
+
+          <!-- 2. Pengaturan -->
+          <section class="card">
+            <h2><span class="step">2</span> Pengaturan</h2>
+
+            <fieldset id="settings" class="settings">
+              <legend class="label">Resolusi output (sisi terpendek)</legend>
+              <div class="seg">
+                <label><input type="radio" name="res" value="480" /><span>480p</span></label>
+                <label><input type="radio" name="res" value="720" checked /><span>720p</span></label>
+                <label><input type="radio" name="res" value="1080" /><span>1080p</span></label>
+              </div>
+
+              <div class="slider">
+                <div class="slider-head"><label for="sharpen">Sharpen</label><output id="sharpenVal">0.8</output></div>
+                <input id="sharpen" type="range" min="0" max="2" step="0.1" value="0.8" />
+              </div>
+
+              <div class="slider">
+                <div class="slider-head"><label for="denoise">Denoise</label><output id="denoiseVal">3</output></div>
+                <input id="denoise" type="range" min="0" max="10" step="1" value="3" />
+              </div>
+
+              <div class="slider">
+                <div class="slider-head"><label for="brightness">Brightness</label><output id="brightnessVal">0</output></div>
+                <input id="brightness" type="range" min="-30" max="30" step="1" value="0" />
+              </div>
+
+              <div class="slider">
+                <div class="slider-head"><label for="contrast">Contrast</label><output id="contrastVal">100%</output></div>
+                <input id="contrast" type="range" min="50" max="150" step="1" value="100" />
+              </div>
+
+              <button id="resetBtn" class="btn ghost" type="button">Reset pengaturan</button>
+            </fieldset>
+
+            <div class="actions">
+              <button id="startBtn" class="btn primary" type="button" disabled>⚡ Start Enhancement</button>
+              <button id="cancelBtn" class="btn danger" type="button" hidden>Batalkan</button>
+            </div>
+
+            <div id="progressWrap" class="progress-wrap" hidden>
+              <div class="progress-head">
+                <span id="statusText">Menyiapkan…</span>
+                <span id="progressPct">0%</span>
+              </div>
+              <div id="bar" class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div id="progressFill" class="fill"></div>
+              </div>
+              <p class="hint">Jangan tutup atau pindah tab selama proses berjalan.</p>
+            </div>
+          </section>
+
+          <!-- 3. Hasil -->
+          <section id="resultCard" class="card result" hidden>
+            <h2><span class="step">3</span> Hasil</h2>
+            <video id="resultVideo" controls playsinline></video>
+            <p id="resultInfo" class="meta"></p>
+            <a id="downloadBtn" class="btn primary" download="enhanced.mp4">⬇ Download MP4</a>
+          </section>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>CENTRAL GEN Z • Pemrosesan lokal dengan FFmpeg.wasm</p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
